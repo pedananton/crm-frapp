@@ -1,7 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import Container from '@material-ui/core/Container';
-import Grid  from "@material-ui/core/Grid";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 import Home from "./components/home/Home";
 import Products from "./components/products/Products";
 function App() {
@@ -14,7 +19,7 @@ function App() {
               <Route path="/" exact>
                 <Home />
               </Route>
-              
+
               <Route path="/products">
                 <Products />
               </Route>
