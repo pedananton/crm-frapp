@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ProductList from "./ProductList";
 import { getProducts } from "../../store/actions/products";
+import { connect } from "react-redux";
 
 function Products({ getProducts }) {
   useEffect(() => {
@@ -22,4 +23,8 @@ function Products({ getProducts }) {
   );
 }
 
-export default Products;
+const mapDispatchToProps = {
+  getProducts,
+};
+
+export default connect(null, mapDispatchToProps)(Products);
