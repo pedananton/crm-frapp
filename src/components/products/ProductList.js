@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 
 import { connect } from "react-redux";
 import ProductItem from "./ProductItem";
+import { Link, useRouteMatch } from "react-router-dom";
 
 const useStyles = makeStyles({
   table: {
@@ -20,8 +21,13 @@ const useStyles = makeStyles({
 function ProductList({ products }) {
   const classes = useStyles();
 
+  const { url } = useRouteMatch();
+
   return (
     <>
+      <button type="submit">
+        <Link to={url + "/new"}>Add New</Link>
+      </button>
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
@@ -40,7 +46,6 @@ function ProductList({ products }) {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* <Button onClick={onAddButtonClick}>Add</Button> */}
     </>
   );
 }

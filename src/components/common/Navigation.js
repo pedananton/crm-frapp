@@ -30,7 +30,7 @@ function Navigation() {
         <Button
           color="inherit"
           component={NavLink}
-          to="/products"
+          to="/orders"
           className={classes.title}
         >
           Orders
@@ -38,7 +38,7 @@ function Navigation() {
         <Button
           color="inherit"
           component={NavLink}
-          to="/products"
+          to="/users"
           className={classes.title}
         >
           Users

@@ -4,6 +4,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ProductList from "./ProductList";
 import { getProducts } from "../../store/actions/products";
 import { connect } from "react-redux";
+import ProductForm from "./ProductForm";
 
 function Products({ getProducts }) {
   useEffect(() => {
@@ -11,13 +12,16 @@ function Products({ getProducts }) {
   }, [getProducts]);
 
   const { path } = useRouteMatch();
+  console.log('path', path);
   return (
     <Paper>
       <Switch>
         <Route path={path + "/"} exact>
           <ProductList />
         </Route>
-        <Route path={path + "/:id"}></Route>
+        <Route path={path + "/:id"}>
+          <ProductForm />
+        </Route>
       </Switch>
     </Paper>
   );
