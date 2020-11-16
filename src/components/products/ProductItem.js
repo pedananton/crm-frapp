@@ -18,10 +18,8 @@ function ProductItem({ product }) {
   const { url } = useRouteMatch();
 
   function onRowClick() {
-    history.push(url + "/" + product.id);
-    console.log('product.id', product.id);
-    console.log('url', url);
-    console.log('history', history);
+    
+    //  history.push(url + "/" + product.id);
   }
 
   return (

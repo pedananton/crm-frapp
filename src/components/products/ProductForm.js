@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -27,8 +28,8 @@ function ProductForm({ product }) {
       </TableContainer>
       <Formik
         initialValues={product}
-        //   onSubmit={onFormSubmit}
-        //   validate={validate}
+          // onSubmit={onFormSubmit}
+          // validate={validate}
       >
         <ProductForm>
           <Field name='name' type='text' placeholder='name' />
@@ -61,4 +62,21 @@ function ProductForm({ product }) {
   );
 }
 
-export default withRouter(connect(ProductForm));
+const mapStateToProps = (state, props) => {
+  const product =
+    props.match.params.id == 'new'
+      ? {
+          name: '',
+          quantity: '',
+          price: '',
+        }
+      : // eslint-disable-next-line
+        state.products.items.find(
+          (product) => product.id == props.match.params.id
+        );
+  return {
+    product,
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(ProductForm));
