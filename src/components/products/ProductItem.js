@@ -18,8 +18,7 @@ function ProductItem({ product }) {
   const { url } = useRouteMatch();
 
   function onRowClick() {
-    
-    //  history.push(url + "/" + product.id);
+    history.push(url + "/" + product.id);
   }
 
   return (

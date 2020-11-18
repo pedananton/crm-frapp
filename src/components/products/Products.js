@@ -12,7 +12,6 @@ function Products({ getProducts }) {
   }, [getProducts]);
 
   const { path } = useRouteMatch();
-  console.log('path', path);
 
   return (
     <Paper>
@@ -20,8 +19,7 @@ function Products({ getProducts }) {
         <Route path={path + '/'} exact>
           <ProductList />
         </Route>
-        <Route path={path + '/3'}>
-        {/* visnet pri popitke perehoda na path */}
+        <Route path={path + ':id'}>
           <ProductForm />
         </Route>
       </Switch>

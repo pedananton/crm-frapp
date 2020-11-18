@@ -1,3 +1,6 @@
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -7,9 +10,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Field, Formik } from 'formik';
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 
 function ProductForm({ product }) {
   return (
@@ -28,8 +28,8 @@ function ProductForm({ product }) {
       </TableContainer>
       <Formik
         initialValues={product}
-          // onSubmit={onFormSubmit}
-          // validate={validate}
+        // onSubmit={onFormSubmit}
+        // validate={validate}
       >
         <ProductForm>
           <Field name='name' type='text' placeholder='name' />
@@ -42,13 +42,6 @@ function ProductForm({ product }) {
               </div>
             )}
           </Field>
-          {/* <Field name="roomId" as="select" placeholder="Room number"> */}
-          {/* {rooms.map((room) => (
-              <option value={room.id} key={room.id}>
-                {room.Color}
-              </option>
-            ))} */}
-          {/* </Field> */}
           <button type='submit'>Save</button>
           <button
             type='button'
@@ -61,8 +54,9 @@ function ProductForm({ product }) {
     </>
   );
 }
-
+// not work mapStateToProps
 const mapStateToProps = (state, props) => {
+  console.log('props', props.match.params.id);
   const product =
     props.match.params.id == 'new'
       ? {
@@ -79,4 +73,8 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(ProductForm));
+const mapDispatchToProps = {};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductForm)
+);
