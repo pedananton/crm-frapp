@@ -19,7 +19,7 @@ function Products({ getProducts }) {
         <Route path={path + '/'} exact>
           <ProductList />
         </Route>
-        <Route path={path + ':id'}>
+        <Route path={path + '/:id'}>
           <ProductForm />
         </Route>
       </Switch>

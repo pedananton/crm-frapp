@@ -9,9 +9,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { Field, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 
 function ProductForm({ product }) {
+  console.log('Form');
   return (
     <>
       <TableContainer component={Paper}>
@@ -31,7 +32,8 @@ function ProductForm({ product }) {
         // onSubmit={onFormSubmit}
         // validate={validate}
       >
-        <ProductForm>
+        <Form>
+          Form
           <Field name='name' type='text' placeholder='name' />
           <Field name='quantity' type='email' placeholder='quantity' />
           <Field name='price' type='price'>
@@ -49,12 +51,12 @@ function ProductForm({ product }) {
           >
             Delete
           </button>
-        </ProductForm>
+        </Form>
       </Formik>
     </>
   );
 }
-// not work mapStateToProps
+
 const mapStateToProps = (state, props) => {
   console.log('props', props.match.params.id);
   const product =
@@ -64,8 +66,7 @@ const mapStateToProps = (state, props) => {
           quantity: '',
           price: '',
         }
-      : // eslint-disable-next-line
-        state.products.items.find(
+      : state.products.items.find(
           (product) => product.id == props.match.params.id
         );
   return {
@@ -73,8 +74,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = {};
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductForm)
-);
+export default withRouter(connect(mapStateToProps)(ProductForm));
