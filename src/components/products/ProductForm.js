@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { Field, Form, Formik } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,14 +16,18 @@ const useStyles = makeStyles((theme) => ({
 
 function ProductForm({ product }) {
   const classes = useStyles();
-
+  console.log(product);
   return (
-    <form className={classes.root} noValidate autoComplete='off'>
-      <TextField label='Product ID' variant='outlined' />
-      <TextField label='Product Name' variant='outlined' />
-      <TextField label='Product Amount' variant='outlined' />
-      <TextField label='Product Price' variant='outlined' />
-    </form>
+    <Formik initialValues={product}>
+      <Form className={classes.root} noValidate autoComplete='off'>
+        <Field name='id' 
+        // value={product.id} 
+        placeholder='Product ID' />
+        <Field name='name' placeholder='Product Name' />
+        <Field name='rest' placeholder='Product Amount' />
+        <Field name='Product Price' placeholder='Product Price' />
+      </Form>
+    </Formik>
   );
 }
 
