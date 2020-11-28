@@ -21,3 +21,15 @@ export function safeFormProduct(data) {
     );
   };
 }
+
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export function deleteFormProduct(id) {
+  return function (dispatch) {
+    products.delete(id).then(() =>
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: id,
+      })
+    );
+  };
+}

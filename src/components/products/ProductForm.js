@@ -1,10 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
 import { makeStyles } from '@material-ui/core/styles';
 import { Field, Form, Formik } from 'formik';
-import { safeFormProduct } from '../../store/actions/products';
+import {
+  deleteFormProduct,
+  safeFormProduct,
+} from '../../store/actions/products';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,11 +18,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProductForm({ product, onSave }) {
+function ProductForm({ product, onSave, onProductDelete }) {
   const classes = useStyles();
+  const history = useHistory();
 
   function onFormSubmit(data) {
     onSave(data);
+  }
+
+  function onDeleteClick() {
+    history.push('/products');
   }
 
   return (
@@ -30,6 +38,12 @@ function ProductForm({ product, onSave }) {
         <Field name='rest' placeholder='Product Amount' />
         <Field name='price' placeholder='Product Price' />
         <button type='submit'>Save</button>
+        <button
+          type='button'
+          onClick={() => onProductDelete(product.id, onDeleteClick())}
+        >
+          Delete
+        </button>
       </Form>
     </Formik>
   );
@@ -53,6 +67,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = {
   onSave: safeFormProduct,
+  onProductDelete: deleteFormProduct,
 };
 
 export default withRouter(
