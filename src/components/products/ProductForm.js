@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
@@ -27,7 +27,7 @@ function ProductForm({ product, onSave, onProductDelete }) {
   }
 
   function onDeleteClick() {
-    history.push('/products');
+    history.push('/');
   }
 
   return (
