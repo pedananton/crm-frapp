@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
 import { makeStyles } from '@material-ui/core/styles';
 import { Field, Form, Formik } from 'formik';
+import { safeFormProduct } from '../../store/actions/products';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,18 +15,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProductForm({ product }) {
+function ProductForm({ product, onSave }) {
   const classes = useStyles();
-  console.log(product);
+
+  function onFormSubmit(data) {
+    onSave(data);
+  }
+
   return (
-    <Formik initialValues={product}>
+    <Formik initialValues={product} onSubmit={onFormSubmit}>
       <Form className={classes.root} noValidate autoComplete='off'>
-        <Field name='id' 
-        // value={product.id} 
-        placeholder='Product ID' />
+        <Field name='id' placeholder='Product ID' readOnly />
         <Field name='name' placeholder='Product Name' />
         <Field name='rest' placeholder='Product Amount' />
-        <Field name='Product Price' placeholder='Product Price' />
+        <Field name='price' placeholder='Product Price' />
+        <button type='submit'>Save</button>
       </Form>
     </Formik>
   );
@@ -47,4 +51,10 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(ProductForm));
+const mapDispatchToProps = {
+  onSave: safeFormProduct,
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductForm)
+);
