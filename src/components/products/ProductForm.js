@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 /* eslint-disable eqeqeq */
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProductForm({ product, onSave, onProductDelete }) {
+function ProductForm({ product, onSave, onProductDelete, items }) {
   const classes = useStyles();
   const history = useHistory();
 
