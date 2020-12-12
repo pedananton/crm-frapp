@@ -8,6 +8,7 @@ import {
   deleteFormProduct,
   safeFormProduct,
 } from '../../store/actions/products';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +25,7 @@ function ProductForm({ product, onSave, onProductDelete, items }) {
 
   function onFormSubmit(data) {
     onSave(data);
+    history.push('/products');
   }
 
   function onDeleteClick() {
@@ -38,12 +40,13 @@ function ProductForm({ product, onSave, onProductDelete, items }) {
         <Field name='rest' placeholder='Product Amount' />
         <Field name='price' placeholder='Product Price' />
         <button type='submit'>Save</button>
-        <button
-          type='button'
+        <Button
+          variant='contained'
+          color='primary'
           onClick={() => onProductDelete(product.id, onDeleteClick())}
         >
           Delete
-        </button>
+        </Button>
       </Form>
     </Formik>
   );
