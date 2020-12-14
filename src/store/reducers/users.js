@@ -12,7 +12,7 @@ const initialState = {
 export default function (state = initialState, { type, payload }) {
   switch (type) {
     case SET_USERS:
-      return { ...state, users: payload };
+      return { ...state, items: payload };
     default:
       return state;
   }

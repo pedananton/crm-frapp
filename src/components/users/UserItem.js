@@ -27,7 +27,7 @@ function UserItem({ user }) {
         {user.id}
       </TableCell>
       <TableCell align='right'>{user.name}</TableCell>
-      <TableCell align='right'>{user}</TableCell>
+      <TableCell align='right'>{user.email}</TableCell>
     </TableRow>
   );
 }

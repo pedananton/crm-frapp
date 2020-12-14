@@ -33,10 +33,10 @@ function ProductList({ products }) {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="right">name</TableCell>
-              <TableCell align="right">rest</TableCell>
-              <TableCell align="right">sum</TableCell>
-              <TableCell align="right">amount</TableCell>
+              <TableCell align="right">NAME</TableCell>
+              <TableCell align="right">REST</TableCell>
+              <TableCell align="right">SUM</TableCell>
+              <TableCell align="right">AMOUNT</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

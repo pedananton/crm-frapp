@@ -31,10 +31,9 @@ function UsersList({ users }) {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align='right'>name</TableCell>
-              <TableCell align='right'>rest</TableCell>
-              <TableCell align='right'>sum</TableCell>
-              <TableCell align='right'>amount</TableCell>
+              <TableCell align='right'>NAME</TableCell>
+              <TableCell align='right'>EMAIL</TableCell>
+              <TableCell align='right'>PHONE</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
