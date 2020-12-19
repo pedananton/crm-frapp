@@ -13,3 +13,10 @@ export const users = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const orders = axios.create({
+  baseURL: 'https://5f16d587a346a00016739638.mockapi.io/api/products/orders',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
