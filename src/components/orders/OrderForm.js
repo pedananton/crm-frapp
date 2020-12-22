@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OrderForm({ order, onSave, onOderDelete, items }) {
+function OrderForm({ order, onSave, onOrderDelete }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -33,13 +33,12 @@ function OrderForm({ order, onSave, onOderDelete, items }) {
     <Formik initialValues={order} onSubmit={onFormSubmit}>
       <Form className={classes.root} noValidate autoComplete='off'>
         <Field name='id' placeholder='Order ID' readOnly />
-        <Field name='name' placeholder='User Name' />
         <Field name='state' placeholder='State' />
         <button type='submit'>Save</button>
         <Button
           variant='contained'
           color='primary'
-          onClick={() => onOderDelete(order.id, onDeleteClick())}
+          onClick={() => onOrderDelete(order.id, onDeleteClick())}
         >
           Delete
         </Button>
