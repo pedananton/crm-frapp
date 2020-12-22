@@ -10,12 +10,12 @@ export const getOrders = () => (dispatch) => {
   );
 };
 
-export const CREATE_ORDERS = 'CREATE_ORDERS';
+export const CREATE_ORDER = 'CREATE_ORDER';
 export function safeOrderForm(data) {
   return function (dispatch) {
     orders.post('', data).then((resp) =>
       dispatch({
-        type: CREATE_ORDERS,
+        type: CREATE_ORDER,
         payload: resp.data,
       })
     );

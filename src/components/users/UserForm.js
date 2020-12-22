@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserForm({ user, onSave, onUserDelete, items }) {
+function UserForm({ user, onSave, onUserDelete }) {
   const classes = useStyles();
   const history = useHistory();
 
