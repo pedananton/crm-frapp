@@ -1,7 +1,7 @@
+/* eslint-disable eqeqeq */
 import React from 'react';
 import { connect } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-/* eslint-disable eqeqeq */
 import { makeStyles } from '@material-ui/core/styles';
 import { Field, Form, Formik } from 'formik';
 import { deleteOrderForm, safeOrderForm } from '../../store/actions/orders';
@@ -16,13 +16,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OrderForm({ order, onSave, onOrderDelete }) {
+function OrderForm({ order, onSave, onOrderDelete, users }) {
   const classes = useStyles();
   const history = useHistory();
 
   function onFormSubmit(data) {
     onSave(data);
-    history.push('/orders');
+    history.push('/');
   }
 
   function onDeleteClick() {
@@ -34,6 +34,13 @@ function OrderForm({ order, onSave, onOrderDelete }) {
       <Form className={classes.root} noValidate autoComplete='off'>
         <Field name='id' placeholder='Order ID' readOnly />
         <Field name='state' placeholder='State' />
+        <Field name="user" as="select" placeholder="Client">
+            {users.map((user) => (
+              <option value={user.id} key={user.id}>
+                {user.name}
+              </option>
+            ))}
+          </Field>
         <button type='submit'>Save</button>
         <Button
           variant='contained'
@@ -51,13 +58,12 @@ const mapStateToProps = (state, props) => {
   const order =
     props.match.params.id == 'new'
       ? {
-          name: '',
-          email: '',
-          phone: '',
+          state: '',
         }
       : state.orders.items.find((order) => order.id == props.match.params.id);
   return {
     order,
+    users: state.users.items,
   };
 };
 
