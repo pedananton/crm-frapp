@@ -34,13 +34,13 @@ function OrderForm({ order, onSave, onOrderDelete, users }) {
       <Form className={classes.root} noValidate autoComplete='off'>
         <Field name='id' placeholder='Order ID' readOnly />
         <Field name='state' placeholder='State' />
-        <Field name="user" as="select" placeholder="Client">
-            {users.map((user) => (
-              <option value={user.id} key={user.id}>
-                {user.name}
-              </option>
-            ))}
-          </Field>
+        <Field name='user' as='select' placeholder='Client'>
+          {users.map((user) => (
+            <option value={user.name} key={user.id}>
+              {user.name}
+            </option>
+          ))}
+        </Field>
         <button type='submit'>Save</button>
         <Button
           variant='contained'

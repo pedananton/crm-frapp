@@ -26,7 +26,7 @@ function OrderItem({ order }) {
       <TableCell component='th' scope='row'>
         {order.id}
       </TableCell>
-      <TableCell align='right'>{order.name}</TableCell>
+      <TableCell align='right'>{order.user}</TableCell>
       <TableCell align='right'>{order.state}</TableCell>
     </TableRow>
   );
