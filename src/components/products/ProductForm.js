@@ -40,35 +40,37 @@ function ProductForm({ product, onSave, onProductDelete }) {
   }
 
   return (
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell align='right'>NAME</TableCell>
-            <TableCell align='right'>STATE</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <Formik initialValues={product} onSubmit={onFormSubmit}>
-            <Form className={classes.root} noValidate autoComplete='off'>
-              <Field name='id' placeholder='Product ID' readOnly />
-              <Field name='name' placeholder='Product Name' />
-              <Field name='rest' placeholder='Product Amount' />
-              <Field name='price' placeholder='Product Price' />
-              <button type='submit'>Save</button>
-              <Button
-                variant='contained'
-                color='primary'
-                onClick={() => onProductDelete(product.id, onDeleteClick())}
-              >
-                Delete
-              </Button>
-            </Form>
-          </Formik>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell align='right'>PRODUCT</TableCell>
+              <TableCell align='right'>AMOUNT</TableCell>
+              <TableCell align='right'>PRICE</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody></TableBody>
+        </Table>
+      <Formik initialValues={product} onSubmit={onFormSubmit}>
+        <Form className={classes.root} noValidate autoComplete='off'>
+          <Field name='id' placeholder='Product ID' readOnly />
+          <Field name='name' placeholder='Product Name' />
+          <Field name='rest' placeholder='Product Amount' />
+          <Field name='price' placeholder='Product Price' />
+          <button type='submit'>Save</button>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={() => onProductDelete(product.id, onDeleteClick())}
+          >
+            Delete
+          </Button>
+        </Form>
+      </Formik>
+      </TableContainer>
+    </>
   );
 }
 
