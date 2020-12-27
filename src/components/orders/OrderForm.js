@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function OrderForm({ order, onSave, onOrderDelete, users }) {
+function OrderForm({ order, onSave, onOrderDelete, users, products }) {
   const classes = useStyles();
   const history = useHistory();
 
@@ -38,6 +38,13 @@ function OrderForm({ order, onSave, onOrderDelete, users }) {
           {users.map((user) => (
             <option value={user.name} key={user.id}>
               {user.name}
+            </option>
+          ))}
+        </Field>
+        <Field name='product' as='select' placeholder='Product'>
+          {products.map((product) => (
+            <option value={product.name} key={product.id}>
+              {product.name}
             </option>
           ))}
         </Field>
@@ -64,6 +71,7 @@ const mapStateToProps = (state, props) => {
   return {
     order,
     users: state.users.items,
+    products: state.products.items,
   };
 };
 
