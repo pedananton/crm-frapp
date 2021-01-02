@@ -10,12 +10,13 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Field, Form, Formik } from 'formik';
+import { Field, Form, Formik, useFormik } from 'formik';
 import {
   deleteFormProduct,
   safeFormProduct,
 } from '../../store/actions/products';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,12 @@ function ProductForm({ product, onSave, onProductDelete }) {
     history.push('/');
   }
 
+  const formik = useFormik({
+    initialValues: { product },
+    // validationSchema: validationSchema,
+    onSubmit: { onFormSubmit },
+  });
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -54,12 +61,43 @@ function ProductForm({ product, onSave, onProductDelete }) {
           <TableBody></TableBody>
         </Table>
       <Formik initialValues={product} onSubmit={onFormSubmit}>
-        <Form className={classes.root} noValidate autoComplete='off'>
-          <Field name='id' placeholder='Product ID' readOnly />
-          <Field name='name' placeholder='Product Name' />
-          <Field name='rest' placeholder='Product Amount' />
-          <Field name='price' placeholder='Product Price' />
-          <button type='submit'>Save</button>
+          <Form className={classes.root} noValidate autoComplete='off'>
+            <Field name='id' placeholder='Product ID' readOnly />
+            <Field name='name' placeholder='Product Name' />
+            <Field name='rest' placeholder='Product Amount' />
+            <Field name='price' placeholder='Product Price' />
+            <button type='submit'>Save</button>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => onProductDelete(product.id, onDeleteClick())}
+            >
+              Delete
+            </Button>
+          </Form>
+        </Formik>
+        {/* <form 
+        // onSubmit={formik.handleSubmit}
+        >
+        <TextField
+            // aria-readonly
+            id='Product ID'
+            name='Product ID'
+            label='Product ID'
+            variant='outlined'
+            value={formik.values.product.id}
+          />
+          <TextField
+            id='Product Name'
+            name='Product Name'
+            label='Product Name'
+            variant='outlined'
+            value={formik.values.product.name}
+            onChange={formik.handleChange}
+          />
+          <Button color='primary' variant='contained' fullWidth type='submit'>
+            Submit
+          </Button>
           <Button
             variant='contained'
             color='primary'
@@ -67,8 +105,7 @@ function ProductForm({ product, onSave, onProductDelete }) {
           >
             Delete
           </Button>
-        </Form>
-      </Formik>
+        </form> */}
       </TableContainer>
     </>
   );
