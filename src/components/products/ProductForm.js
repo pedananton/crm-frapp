@@ -40,12 +40,6 @@ function ProductForm({ product, onSave, onProductDelete }) {
     history.push('/');
   }
 
-  const formik = useFormik({
-    initialValues: { product },
-    // validationSchema: validationSchema,
-    onSubmit: { onFormSubmit },
-  });
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -76,36 +70,7 @@ function ProductForm({ product, onSave, onProductDelete }) {
             </Button>
           </Form>
         </Formik>
-        {/* <form 
-        // onSubmit={formik.handleSubmit}
-        >
-        <TextField
-            // aria-readonly
-            id='Product ID'
-            name='Product ID'
-            label='Product ID'
-            variant='outlined'
-            value={formik.values.product.id}
-          />
-          <TextField
-            id='Product Name'
-            name='Product Name'
-            label='Product Name'
-            variant='outlined'
-            value={formik.values.product.name}
-            onChange={formik.handleChange}
-          />
-          <Button color='primary' variant='contained' fullWidth type='submit'>
-            Submit
-          </Button>
-          <Button
-            variant='contained'
-            color='primary'
-            onClick={() => onProductDelete(product.id, onDeleteClick())}
-          >
-            Delete
-          </Button>
-        </form> */}
+       
       </TableContainer>
     </>
   );
